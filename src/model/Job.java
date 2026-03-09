@@ -1,5 +1,8 @@
 package model;
 
+import java.util.UUID;
+
 public interface Job {
-    void execute();
+    String getId();
+    Object execute();
 }

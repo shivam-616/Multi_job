@@ -1,19 +1,34 @@
 package model;
 
+import java.util.UUID;
+
 public class FactorialJob implements Job {
     private final int factorial;
+    private final String id;
 
     public FactorialJob(int factorial) {
         this.factorial = factorial;
+        this.id = UUID.randomUUID().toString();
     }
 
     @Override
-    public void execute() {
-        System.out.println("FactorialJob executing...");
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public Object execute() {
         int result = 1;
-        for (int i = 1; i <=factorial ; i++) {
+        int i = 1;
+        for (i = 1; i <= factorial; i++) {
             result *= i;
         }
-        System.out.println(result);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+//        .out.println("Factorial of " + factorial + " = " + result + "  -- Thread name is " + Thread.currentThread().getName());
+           return result;
     }
 }
